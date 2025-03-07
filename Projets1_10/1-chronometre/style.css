@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #1b63c071;
+}
+
+.chronometre {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    width: 400px;
+    text-align: center;
+}
+
+.tim {
+    margin: auto;
+    width: 100%;
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.tim span {
+    font-family: "Roboto", serif;
+    padding: 5px;
+}
+
+.controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+button {
+    background-color: #0b1d85d5;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 31%;
+    border: 0;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chronometre {
+        width: 90%; /* Prendre 90% de la largeur de l'écran */
+        padding: 8px; /* Réduire le padding */
+    }
+
+    .tim {
+        font-size: 28px; /* Réduire la taille de la police */
+    }
+
+    button {
+        font-size: 14px; /* Réduire la taille de la police */
+        padding: 8px 15px; /* Réduire le padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .chronometre {
+        width: 95%; /* Prendre 95% de la largeur de l'écran */
+        padding: 5px; /* Réduire encore le padding */
+    }
+
+    .tim {
+        font-size: 24px; /* Réduire encore la taille de la police */
+    }
+
+    button {
+        font-size: 12px; /* Réduire encore la taille de la police */
+        padding: 6px 10px; /* Réduire encore le padding */
+        width: 30%; /* Ajuster la largeur des boutons */
+    }
+}

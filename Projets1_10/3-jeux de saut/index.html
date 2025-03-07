@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jeu de saut</title>
+</head>
+<body>
+    <!-- Écran de démarrage -->
+    <div id="startScreen">
+        <h1>Jeu de Saut</h1>
+        <p>Appuyez sur ESPACE pour sauter !</p>
+        <button onclick="start()">Commencer</button>
+    </div>
+
+    <!-- Section du jeu -->
+    <section>
+        Score: <span id="score">0</span> | High Score: <span id="highScore">0</span> | Level: <span id="level">1</span>
+        <div class="jeu">
+            <div class="perso">
+                <img id="image" src="coureur.png" alt="Personnage" />
+            </div>
+            <img class="obstacle" src="obstacle.gif" alt="Obstacle" />
+        </div>
+    </section>
+
+    <!-- Contrôles -->
+    <div class="controls">
+        <button onclick="sauter()">SAUTER</button>
+        <button onclick="stop()">REJOUER</button>
+    </div>
+
+    <!-- Écran de fin -->
+    <div id="endScreen">
+        <h1>Game Over</h1>
+        <p>Score: <span id="finalScore"></span></p>
+        <button onclick="start()">Rejouer</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

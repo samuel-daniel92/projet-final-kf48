@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+}
+
+body {
+    background-color: #1b63c071;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Styliser le conteneur pour les entrées */
+.container {
+    background-color: #fff;
+    width: 350px;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline: 0;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+/* Personnaliser le bouton d'envoi */
+input[type="submit"] {
+    background-color: #0b1d85d5;
+    color: #fff;
+    border: 1px solid #675afe;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    transform: scale(0.9);
+}
+
+/* Personnaliser la boîte message */
+#message {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 6px;
+    width: 350px;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    animation: anime 0.5s ease-out;
+}
+
+/* Animation message */
+@keyframes anime {
+    from {
+        transform: translateY(100px);
+    }
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#message p {
+    margin-left: 7px;
+    padding: 7px 0;
+    font-size: 15px;
+}
+
+/* Lorsque les exigences sont erronées */
+.invalid {
+    color: red;
+}
+
+.invalid::before {
+    position: relative;
+    left: -7px;
+    content: "✕";
+}
+
+/* Lorsque les exigences sont respectées */
+.valid {
+    color: green;
+}
+
+.valid::before {
+    position: relative;
+    left: -7px;
+    content: "✔";
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container, #message {
+        width: 90%; /* Prendre 90% de la largeur de l'écran */
+    }
+
+    input[type="submit"] {
+        font-size: 14px; /* Réduire la taille de la police */
+    }
+
+    h3 {
+        font-size: 14px; /* Réduire la taille de la police */
+    }
+
+    #message p {
+        font-size: 13px; /* Réduire la taille de la police */
+    }
+}
+
+@media (max-width: 480px) {
+    .container, #message {
+        width: 95%; /* Prendre 95% de la largeur de l'écran */
+        padding: 15px; /* Réduire le padding */
+    }
+
+    input {
+        padding: 10px; /* Réduire le padding */
+    }
+
+    input[type="submit"] {
+        font-size: 12px; /* Réduire encore la taille de la police */
+    }
+
+    h3 {
+        font-size: 12px; /* Réduire encore la taille de la police */
+    }
+
+    #message p {
+        font-size: 11px; /* Réduire encore la taille de la police */
+    }
+}

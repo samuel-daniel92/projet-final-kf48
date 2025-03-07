@@ -1,0 +1,148 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	background-color: #1b63c071;
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif, 'Times New Roman', Times, serif;
+}
+
+.jeu {
+	z-index: 1;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	width: 90%; /* Modifié pour les petits écrans */
+	max-width: 400px; /* Limite la largeur maximale */
+	background: rgb(255, 255, 255);
+	border-radius: 6px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.jeu .question {
+	height: auto; /* Ajusté pour les petits écrans */
+	text-align: center;
+}
+
+.jeu .question h4 {
+	font-size: 24px; /* Taille de police réduite pour les petits écrans */
+}
+
+.jeu .question span {
+	color: #0b1d85d5;
+}
+
+.jeu .reponse input {
+	width: 100%; /* Pleine largeur pour les petits écrans */
+	max-width: 200px; /* Limite la largeur maximale */
+	height: 50px;
+	font-size: 20px; /* Taille de police réduite pour les petits écrans */
+	text-align: center;
+	border: none;
+	background-color: #0b1d85d5;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	color: white;
+}
+
+.jeu .control input,
+.jeu .control button {
+	border: none;
+	background-color: #0b1d85d5;
+	padding: 15px;
+	width: 100%; /* Pleine largeur pour les petits écrans */
+	max-width: 250px; /* Limite la largeur maximale */
+	border-radius: 6px;
+	font-size: 18px; /* Taille de police réduite pour les petits écrans */
+	color: white;
+}
+
+.jeu .control input:hover,
+.jeu .control button:hover {
+	transform: scale(0.9); /* Effet de zoom réduit pour les petits écrans */
+	transition: 0.3s; /* Durée de transition réduite */
+	cursor: pointer;
+}
+
+.result {
+	display: none;
+	position: absolute;
+	padding: 20px;
+	flex-direction: column;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	width: 90%; /* Modifié pour les petits écrans */
+	max-width: 400px; /* Limite la largeur maximale */
+	background: white;
+	border-radius: 6px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.result span {
+	padding: 15px;
+	font-size: 18px; /* Taille de police réduite pour les petits écrans */
+	text-align: center;
+}
+
+.result span em {
+	color: #0b1d85d5;
+}
+
+/* Media Queries pour les écrans plus petits */
+@media (max-width: 768px) {
+	.jeu {
+		width: 95%; /* Ajustement pour les écrans moyens */
+	}
+
+	.jeu .question h4 {
+		font-size: 20px; /* Taille de police réduite pour les écrans moyens */
+	}
+
+	.jeu .reponse input {
+		font-size: 18px; /* Taille de police réduite pour les écrans moyens */
+	}
+
+	.jeu .control input,
+	.jeu .control button {
+		font-size: 16px; /* Taille de police réduite pour les écrans moyens */
+	}
+
+	.result span {
+		font-size: 16px; /* Taille de police réduite pour les écrans moyens */
+	}
+}
+
+@media (max-width: 480px) {
+	.jeu {
+		width: 100%; /* Pleine largeur pour les très petits écrans */
+		padding: 10px; /* Réduction du padding */
+	}
+
+	.jeu .question h4 {
+		font-size: 18px; /* Taille de police réduite pour les très petits écrans */
+	}
+
+	.jeu .reponse input {
+		font-size: 16px; /* Taille de police réduite pour les très petits écrans */
+	}
+
+	.jeu .control input,
+	.jeu .control button {
+		font-size: 14px; /* Taille de police réduite pour les très petits écrans */
+	}
+
+	.result span {
+		font-size: 14px; /* Taille de police réduite pour les très petits écrans */
+	}
+}

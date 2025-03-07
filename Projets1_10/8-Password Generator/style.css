@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ajout pour une meilleure gestion des dimensions */
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b63c071;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    padding: 20px;
+    width: 90%; /* Largeur flexible pour les petits écrans */
+    max-width: 600px; /* Largeur maximale pour les grands écrans */
+    background-color: aliceblue;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.container .top div {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Empiler les éléments sur les petits écrans */
+    align-items: center;
+    gap: 10px; /* Espacement entre les éléments */
+}
+
+.container .top div span {
+    width: 100%; /* Pleine largeur pour les petits écrans */
+    font-size: 25px;
+}
+
+.container .top div input {
+    width: 100%; /* Pleine largeur pour les petits écrans */
+    max-width: 200px; /* Limite la largeur maximale */
+    height: 40px;
+    text-align: center;
+    font-size: 20px; /* Taille de police réduite pour les petits écrans */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: #0b1d85ea;
+    outline: none;
+}
+
+.container .middle {
+    display: flex;
+    width: 100%;
+    height: auto; /* Hauteur automatique pour les petits écrans */
+}
+
+.container .middle input {
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    text-align: center;
+    font-size: 20px; /* Taille de police réduite pour les petits écrans */
+    padding: 10px; /* Ajout de padding pour l'espacement */
+}
+
+.container .bottom {
+    display: flex;
+    width: 100%;
+    flex-direction: column; /* Empiler les éléments sur les petits écrans */
+    gap: 10px; /* Espacement entre les éléments */
+}
+
+.container .bottom #generate {
+    font-size: 20px; /* Taille de police réduite pour les petits écrans */
+    width: 100%; /* Pleine largeur pour les petits écrans */
+    padding: 15px;
+    background-color: #0b1d8596;
+    border: none;
+    color: white;
+    border-radius: 6px; /* Bordure arrondie pour tous les côtés */
+    transition: 0.5s; /* Durée de transition réduite */
+}
+
+.container .bottom #generate:hover {
+    transform: scale(0.95); /* Effet de zoom réduit */
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.container .bottom #copy {
+    padding: 15px;
+    font-size: 20px; /* Taille de police réduite pour les petits écrans */
+    width: 100%; /* Pleine largeur pour les petits écrans */
+    color: white;
+    background-color: #0b1d85d5;
+    border: none;
+    border-radius: 6px; /* Bordure arrondie pour tous les côtés */
+    transition: 0.5s; /* Durée de transition réduite */
+}
+
+.container .bottom #copy:hover {
+    transform: scale(0.95); /* Effet de zoom réduit */
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/* Media Queries pour les écrans plus petits */
+@media (max-width: 768px) {
+    .container .top div span {
+        font-size: 22px; /* Taille de police réduite pour les écrans moyens */
+    }
+
+    .container .top div input {
+        font-size: 18px; /* Taille de police réduite pour les écrans moyens */
+    }
+
+    .container .middle input {
+        font-size: 18px; /* Taille de police réduite pour les écrans moyens */
+    }
+
+    .container .bottom #generate,
+    .container .bottom #copy {
+        font-size: 18px; /* Taille de police réduite pour les écrans moyens */
+    }
+}
+
+@media (max-width: 480px) {
+    .container .top div span {
+        font-size: 20px; /* Taille de police réduite pour les très petits écrans */
+    }
+
+    .container .top div input {
+        font-size: 16px; /* Taille de police réduite pour les très petits écrans */
+    }
+
+    .container .middle input {
+        font-size: 16px; /* Taille de police réduite pour les très petits écrans */
+    }
+
+    .container .bottom #generate,
+    .container .bottom #copy {
+        font-size: 16px; /* Taille de police réduite pour les très petits écrans */
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Jeu de calcul</title>
+	</head>
+	<body>
+		<div class="jeu">
+			<div class="question">
+				<h4> Combien font: <span id="calcul">2+0</span> ?</h4>
+			</div>
+			<div class="reponse">
+				<input type="number" id="reponse" placeholder="reponse"/>
+			</div>
+			<div class="control">
+				<input type="button" value="Envoyer" id="submit"/>
+			</div>
+		</div>
+		<div class="result">
+			<span>Vous avez perdu!! Vous avez repondu <em id="count">5</em> question(s)</span>
+			<button id="restart">Recommencer</button>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

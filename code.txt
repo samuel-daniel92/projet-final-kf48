@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Projet Final | DOCK</title>
+</head>
+<body class="page-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img src="Images/KFOKAM_48_logo.jpeg" alt="Logo">
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-stopwatch"></i><span>Chronomètre</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-list-check"></i><span>To Do List</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-gamepad"></i><span>Jeux de saut</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-hand-back-fist"></i><span>Jeu de pierre-Papier-Ciseaux</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-passport"></i><span>Vérification de mot de passe</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-divide"></i><span>Jeu de calcul</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-barcode"></i><span>Génerateur de Code-barres</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-plus"></i><span>Génerateur de mot de passe</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-link"></i><span>Raccourcisseur de lien</span></a></li>
+                <li><a href="#" class="menu-item"><i class="fa-solid fa-indent"></i><span>Creer des Onglets</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <h2 class="header-title">Projet final | DOCK</h2>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-details">
+               
+            </div>
+            <div class="profile-card">
+                <img src="Images/photoDany.jpg" alt="Profil">
+                <table class="info">
+                    <tr>
+                        <td><b>Nom</b></td>
+                        <td>Mbom Samuel Daniel</td>
+                    </tr>
+                    <tr>
+                        <td><b>Email</b></td>
+                        <td>danielmbom@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td><b>Téléphone</b></td>
+                        <td>693906220</td>
+                    </tr>
+                    <tr>
+                        <td><b>Adresse</b></td>
+                        <td>Adresse, Soa, Yaoundé, Cameroun</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span class="footer-text">Copyright © 2025</span>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0.1rem;
+    font-family: Arial, sans-serif;
+    background-color: #f0f9ff; /* bg-sky-50 */
+    color: #1e293b; /* text-gray-800 */
+    overflow-y: auto;
+    
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    
+    
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 13%; /* Largeur de la sidebar */
+    background-color: rgba(11, 43, 114, 0.6);
+    border: none;
+    padding: 1rem; /* p-4 */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+   height: 100%;
+
+    top: 1; /* Aligner en haut */
+    left: 1; /* Aligner à gauche */
+    
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem; /* h-12 */
+    margin-top: 0.25rem; /* mt-1 */
+}
+
+.logo-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    font-size: 46px;
+    padding: 0;
+    margin: 0;
+    margin-top: 2rem;
+    
+}
+
+.sidebar-menu li {
+    margin-bottom: 0.25rem; /* space-y-1 */
+   
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    height: 4.8rem; /* h-11 */
+    padding-left: 1rem; /* ml-4 */
+    color: #1e293b; /* text-gray-900 */
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #dbeafe; /* hover:bg-blue-100 */
+    border-left-color: #6366f1; /* hover:border-indigo-500 */
+}
+
+.menu-item i {
+    margin-right: 0.5rem; /* ml-2 */
+}
+
+.menu-item span {
+    font-size: 0.875rem; /* text-sm */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: 1rem; /* Décale le contenu à droite de la sidebar */
+    padding: 0rem; /* Espacement intérieur */
+    /* Tous les enfants prennent la même largeur */
+    width: 100%; /* Assure une largeur de 100% */
+    height: 100vh;
+    border: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem; /* h-20 */
+    padding: 0 1rem; /* px-4 */
+    border: none;
+    background-color: rgba(238, 10, 40, 0.6); 
+    height: 8%;
+    width: 97%;
+
+}
+
+.header-title {
+    font-size: 2.5rem; /* text-2xl */
+    font-weight: bold;
+    color: white;
+ 
+    
+    
+}
+
+
+.profile-section {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem; /* gap-2 */
+    margin-top: 0.75rem; /* mt-3 */
+    padding: 0rem; /* px-4 */
+    height: 87%;
+    width: 99%;
+    border: none;
+   
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none; 
+    border-radius: 0.125rem; /* rounded-sm */
+    padding: 1rem; /* m-4 */
+    background-color: rgba(192, 142, 113, 0.3);
+    width: 20%;
+   
+
+}
+
+.profile-card img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-top: -20%;
+}
+
+
+.profile-details {
+    border: none; /* border-2 border-dashed */
+    padding: 1rem; /* m-4 */
+    background-color: rgba(192, 142, 113, 0.3);
+    width: 80%;
+    
+}
+
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem; /* h-20 */
+    padding: 0 1rem; /* px-4 */
+    border: none;
+    margin-top: 0.75rem; /* mt-3 */
+    height: 5%;
+    width: 97%;
+    background-color: rgba(238, 10, 40, 0.6); 
+
+}
+
+.footer-text{
+    font-size: 1rem; /* text-2xl */
+    font-weight: bold;
+    color: white;
+    margin: 1.5%;
+    
+
+}
+
+table.info {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table.info td {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+}
+
+table.info td:first-child {
+    font-weight: bold;
+    background-color: #f5f5f5;
+    color: #333333;
+}
+
+table.info tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table.info tr:hover {
+    background-color: #e3f2fd;
+    transition: background-color 0.3s ease;
+}

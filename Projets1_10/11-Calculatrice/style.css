@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ajout pour une meilleure gestion des dimensions */
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b63c071;
+}
+
+.calculatrice {
+    height: auto;
+    padding: 10px;
+    width: 90%; /* Largeur flexible pour les petits écrans */
+    max-width: 350px; /* Largeur maximale pour les grands écrans */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ecran {
+    height: 150px;
+    background-color: rgba(32, 52, 165, 0.315);
+    border-radius: 20px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calcul,
+.result {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 45%;
+    width: 95%;
+}
+
+.calcul input,
+.result input {
+    height: 80%;
+    width: 100%;
+    font-size: 24px; /* Taille de police réduite pour les petits écrans */
+    background-color: transparent;
+    text-align: end;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.intermediaire {
+    height: 50px;
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding: 0 20px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ligne {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.control {
+    background-color: #0b1d85d5;
+    width: 60px; /* Taille réduite pour les petits écrans */
+    height: 60px; /* Taille réduite pour les petits écrans */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 24px; /* Taille de police réduite pour les petits écrans */
+    font-weight: 700;
+}
+
+.color.green {
+    color: #fdfdfd;
+}
+
+.background.green {
+    background-color: #081477;
+    font-weight: 1000;
+    font-size: 40px; /* Taille de police réduite pour les petits écrans */
+}
+
+.trans {
+    transition: 0.5s ease-in-out;
+}
+
+.trans:hover {
+    transform: scale(0.9);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+/* Media Queries pour les écrans plus petits */
+@media screen and (max-width: 480px) {
+    .calculatrice {
+        width: 95%; /* Largeur flexible pour les très petits écrans */
+        padding: 5px; /* Réduction du padding */
+    }
+
+    .ecran {
+        height: 120px; /* Hauteur réduite pour les très petits écrans */
+        margin: 10px; /* Marge réduite */
+    }
+
+    .calcul input,
+    .result input {
+        font-size: 20px; /* Taille de police réduite pour les très petits écrans */
+    }
+
+    .control {
+        width: 50px; /* Taille réduite pour les très petits écrans */
+        height: 50px; /* Taille réduite pour les très petits écrans */
+        font-size: 20px; /* Taille de police réduite pour les très petits écrans */
+    }
+
+    .background.green {
+        font-size: 30px; /* Taille de police réduite pour les très petits écrans */
+    }
+}

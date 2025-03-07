@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Assure que les dimensions incluent les bordures et le padding */
+}
+
+body {
+    display: flex;
+    background-color: #1b63c071;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    font-family: Arial, sans-serif; /* Police de caractères par défaut */
+}
+
+section {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgb(57, 81, 117);
+}
+
+.jeu {
+    width: 700px;
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+    background-image: url("Nhqj.gif");
+    background-size: cover; /* ou background-size: 100% 100%; */
+    background-position: center; /* Optionnel : centre l'image */
+}
+
+.perso {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    top: 195px;
+}
+
+.animation-one-click {
+    animation: saut-one-click 500ms ease-in-out; /* Saut rapide (500ms) */
+}
+
+@keyframes saut-one-click {
+    0% {
+        top: 100px;
+    }
+    50% {
+        top: 20px; /* Hauteur maximale du saut */
+    }
+    100% {
+        top: 100px;
+    }
+}
+
+.perso img {
+    width: 180%;
+    height: 150%;
+}
+
+.obstacle {
+    width: 100px; /* Taille de l'obstacle */
+    height: 100px;
+    position: absolute; /* Utiliser absolute pour un positionnement précis */
+    top: 265px; /* Position verticale de l'obstacle */
+    left: 85%; /* Commence hors de l'écran */
+}
+
+.roule-animation {
+    animation: roule infinite linear; /* Durée contrôlée via JS */
+}
+
+@keyframes roule {
+    0% {
+        left: 100%; /* Commence hors de l'écran */
+    }
+    100% {
+        left: -40px; /* Termine hors de l'écran (à gauche) */
+    }
+}
+
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+a,
+button {
+    padding: 10px 50px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 0 4px rgb(31, 48, 83);
+    font-weight: bold;
+    background-color: #0b1d85d5;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s; /* Animation au survol */
+}
+
+button:hover {
+    transform: scale(0.9); /* Effet de rétrécissement au survol */
+}
+
+#startScreen,
+#endScreen {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#endScreen {
+    display: none; /* Masqué par défaut */
+}
+
+#level {
+    font-weight: bold;
+    color: #0b1d85d5; /* Style pour le niveau */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        padding: 10px; /* Réduire le padding */
+    }
+
+    .jeu {
+        width: 90%; /* Prendre 90% de la largeur de l'écran */
+        height: 300px; /* Réduire la hauteur */
+    }
+
+    .perso {
+        width: 80px; /* Réduire la taille du personnage */
+        height: 80px;
+        top: 150px; /* Ajuster la position verticale */
+    }
+
+    .perso img {
+        width: 150%; /* Ajuster la taille de l'image du personnage */
+        height: 120%;
+    }
+
+    .obstacle {
+        width: 60px; /* Réduire la taille de l'obstacle */
+        height: 60px;
+        top: 200px; /* Ajuster la position verticale */
+    }
+
+    .controls {
+        margin-top: 10px; /* Réduire la marge */
+    }
+
+    a,
+    button {
+        padding: 8px 30px; /* Réduire le padding des boutons */
+        font-size: 14px; /* Réduire la taille de la police */
+    }
+
+    #level {
+        font-size: 14px; /* Réduire la taille de la police du niveau */
+    }
+}
+
+@media (max-width: 480px) {
+    .jeu {
+        height: 250px; /* Réduire encore la hauteur */
+    }
+
+    .perso {
+        width: 60px; /* Réduire encore la taille du personnage */
+        height: 60px;
+        top: 120px; /* Ajuster la position verticale */
+    }
+
+    .perso img {
+        width: 120%; /* Ajuster la taille de l'image du personnage */
+        height: 100%;
+    }
+
+    .obstacle {
+        width: 50px; /* Réduire encore la taille de l'obstacle */
+        height: 50px;
+        top: 160px; /* Ajuster la position verticale */
+    }
+
+    a,
+    button {
+        padding: 6px 20px; /* Réduire encore le padding des boutons */
+        font-size: 12px; /* Réduire encore la taille de la police */
+    }
+
+    #level {
+        font-size: 12px; /* Réduire encore la taille de la police du niveau */
+    }
+}
