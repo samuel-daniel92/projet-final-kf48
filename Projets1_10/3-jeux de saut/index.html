@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jeu de saut</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Odyssey | Jeu de Saut</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Écran de démarrage -->
-    <div id="startScreen">
-        <h1>Jeu de Saut</h1>
-        <p>Appuyez sur ESPACE pour sauter !</p>
-        <button onclick="start()">Commencer</button>
-    </div>
-
-    <!-- Section du jeu -->
-    <section>
-        Score: <span id="score">0</span> | High Score: <span id="highScore">0</span> | Level: <span id="level">1</span>
-        <div class="jeu">
-            <div class="perso">
-                <img id="image" src="coureur.png" alt="Personnage" />
-            </div>
-            <img class="obstacle" src="obstacle.gif" alt="Obstacle" />
+    <div class="game-container">
+        <div class="sky">
+            <div class="clouds"></div>
+            <div class="mountains"></div>
         </div>
-    </section>
-
-    <!-- Contrôles -->
-    <div class="controls">
-        <button onclick="sauter()">SAUTER</button>
-        <button onclick="stop()">REJOUER</button>
+        <div class="game-area">
+            <div id="bird" class="bird"></div>
+            <div id="obstacles" class="obstacles"></div>
+            <div class="score-board">
+                <span>Score: <span id="score">0</span></span>
+                <span>Level: <span id="level">1</span></span>
+                <span>High Score: <span id="high-score">0</span> (<span id="best-player">Inconnu</span>)</span>
+            </div>
+            <button id="jump-button" class="jump-button" aria-label="Sauter">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+        <div class="ground"></div>
+        <div class="start-screen">
+            <h1>Flappy Odyssey</h1>
+            <button id="start-button" class="start-button">Commencer</button>
+        </div>
+        <div class="game-over-screen">
+            <h1>Game Over</h1>
+            <p>Score: <span id="final-score">0</span></p>
+            <p>Level: <span id="final-level">1</span></p>
+            <input type="text" id="player-name" placeholder="Ton nom" maxlength="10">
+            <button id="restart">Rejouer</button>
+            <div class="top-scores">
+                <h3>Meilleurs Scores</h3>
+                <ul id="top-scores-list"></ul>
+            </div>
+        </div>
     </div>
-
-    <!-- Écran de fin -->
-    <div id="endScreen">
-        <h1>Game Over</h1>
-        <p>Score: <span id="finalScore"></span></p>
-        <button onclick="start()">Rejouer</button>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>

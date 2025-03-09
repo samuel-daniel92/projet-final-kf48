@@ -1,62 +1,80 @@
-const contenantchoixordinateur = document.getElementById('choix-ordinateur');
-const contenantchoixUtilisateur = document.getElementById('choix-utilisateur');
-const contenantResultal = document.getElementById('resultat');
+// Détection du thème au chargement
+const urlParams = new URLSearchParams(window.location.search);
+const theme = urlParams.get("theme");
 
-const choixPossible = document.querySelectorAll('button');
-
-let choixUtilisateur,resultat, choixOrdinateur
-
-// Evenement click sur les buttons
-choixPossible.forEach(choixPossible => choixPossible.addEventListener('click',(e)=>{
-//récuperation de l'ID du boutton cliqué
- choixUtilisateur = e.target.id;
- // on ajoute l'image correspondanr au choix
- contenantchoixUtilisateur.innerHTML = `<img src="${choixUtilisateur}.png">`;
- generer_choix_ordinateur()
- verification()
-}))
-
-//fonction pour générer le choix de l'ordinateur
-
-function generer_choix_ordinateur(){
-   let random = Math.floor(Math.random() * 3) +1; // Generer des nombre compris entre 1et 3
-    if(random === 1){
-        choixOrdinateur = "pierre"
-    }
-    if(random === 2){
-        choixOrdinateur = "papier"
-    }
-    if(random === 3){
-        choixOrdinateur = "ciseaux"
-    }
-
- contenantchoixordinateur.innerHTML = `<img src="${choixOrdinateur}.png">`;
-
+if (theme === "dark") {
+    document.body.classList.add("dark-mode");
 }
 
-//fonction pour verifier si le joueur a gagner ou pas
-function verification(){
-    if(choixUtilisateur === choixOrdinateur){
-        resultat =  "Egalité !" ;
+// Sélection des éléments
+const playerScoreEl = document.getElementById("player-score");
+const computerScoreEl = document.getElementById("computer-score");
+const choiceButtons = document.querySelectorAll(".choice-btn");
+const resultText = document.getElementById("result-text");
+const playerIcon = document.getElementById("player-icon");
+const computerIcon = document.getElementById("computer-icon");
+const resetBtn = document.getElementById("reset-btn");
+
+// Variables de score
+let playerScore = 0;
+let computerScore = 0;
+
+// Choix possibles
+const choices = ["pierre", "papier", "ciseaux"];
+const icons = {
+    pierre: "fa-hand-rock",
+    papier: "fa-hand-paper",
+    ciseaux: "fa-hand-scissors"
+};
+
+// Jouer un tour
+choiceButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const playerChoice = button.dataset.choice;
+        const computerChoice = choices[Math.floor(Math.random() * 3)];
+        playRound(playerChoice, computerChoice);
+    });
+});
+
+// Logique du jeu
+function playRound(playerChoice, computerChoice) {
+    // Mettre à jour les icônes
+    playerIcon.className = `fas ${icons[playerChoice]} bounce`;
+    computerIcon.className = `fas ${icons[computerChoice]} bounce`;
+
+    // Déterminer le gagnant
+    if (playerChoice === computerChoice) {
+        resultText.textContent = "Égalité !";
+    } else if (
+        (playerChoice === "pierre" && computerChoice === "ciseaux") ||
+        (playerChoice === "papier" && computerChoice === "pierre") ||
+        (playerChoice === "ciseaux" && computerChoice === "papier")
+    ) {
+        resultText.textContent = "Vous gagnez !";
+        playerScore++;
+        playerScoreEl.textContent = playerScore;
+    } else {
+        resultText.textContent = "L'ordinateur gagne !";
+        computerScore++;
+        computerScoreEl.textContent = computerScore;
     }
-     if(choixUtilisateur ==="pierre" && choixOrdinateur=== "papier"){
-         resultat =  "perdu !" ;
-    }
-    if(choixUtilisateur ==="papier" && choixOrdinateur==="ciseaux"){
-            resultat =  "perdu !" ;
-    }
-    if(choixUtilisateur ==="ciseaux" && choixOrdinateur=== "pierre"){
-        resultat =  "perdu !" ;
-    }
-    // les cas ou le joueur gagne
-    if(choixUtilisateur ==="pierre" && choixOrdinateur=== "ciseaux"){
-        resultat =  "gagné !" ;
-    }
-    if(choixUtilisateur ==="ciseaux" && choixOrdinateur=== "papier"){
-        resultat =  "gagné !" ;
-    }
-    if(choixUtilisateur ==="papier" && choixOrdinateur=== "pierre"){
-        resultat =  "gagné !" ;
-    };
-    contenantResultal.innerHTML = resultat;
+
+    // Animation des icônes
+    playerIcon.style.animation = "bounce 0.5s";
+    computerIcon.style.animation = "bounce 0.5s";
+    setTimeout(() => {
+        playerIcon.style.animation = "";
+        computerIcon.style.animation = "";
+    }, 500);
 }
+
+// Réinitialisation
+resetBtn.addEventListener("click", () => {
+    playerScore = 0;
+    computerScore = 0;
+    playerScoreEl.textContent = "0";
+    computerScoreEl.textContent = "0";
+    resultText.textContent = "Fais ton choix !";
+    playerIcon.className = "fas fa-question";
+    computerIcon.className = "fas fa-question";
+});

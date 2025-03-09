@@ -1,159 +1,183 @@
-const turnOn = document.getElementById("turn-on");
-const turnOff = document.getElementById("turn-off");
-const calcul = document.getElementById("calcul");
-const result = document.getElementById("result");
-const calculatrice = document.querySelector(".calculatrice");
-const ecran = document.querySelector(".ecran");
-const colorBtn = document.querySelectorAll(".control.color");
-const equal = document.querySelector(".background");
-const backSpace = document.querySelector(".col");
-const control = document.querySelectorAll(".con");
-const nbr = document.querySelectorAll(".control.nbr");
+// Détection du thème au chargement
+const urlParams = new URLSearchParams(window.location.search);
+const theme = urlParams.get("theme");
 
-turnOff.addEventListener("click", () => {
-	turnOnOff("on");
-});
-turnOn.addEventListener("click", () => {
-	turnOnOff("off");
-});
-
-turnOff.classList.add("trans");
-turnOn.classList.add("trans");
-if (turnOff.style.display == "none") {
+if (theme === "dark") {
+    document.body.classList.add("dark-mode");
 }
 
-//touches pour les nombres
-nbr.forEach((nombre) => {
-	nombre.classList.add("trans");
-	nombre.addEventListener("click", () => {
-		if (turnOff.style.display == "none") {
-			if (nombre != nbr[9]) {
-				calcul.value = calcul.value + nombre.innerHTML;
-			} else {
-				let valeur = calcul.value;
-				if (valeur.substring(valeur.length - 2, valeur.length) == "(-") {
-					calcul.value = valeur.substring(0, valeur.length - 2);
-				} else {
-					calcul.value =
-						calcul.value + control[2].innerHTML + control[6].innerHTML + "";
-				}
-			}
-			let r = calculer(calcul.value);
-			if (r != null) {
-				result.value = r + "";
-			} else {
-				result.value = "";
-			}
-		}
-	});
-});
-//touches de controle
-control.forEach((element) => {
-	element.classList.add("trans");
+// Sélection des éléments
+const resultDisplay = document.getElementById("result");
+const buttons = document.querySelectorAll(".btn");
+const toggleModeButton = document.getElementById("toggle-mode");
+const historyList = document.getElementById("history-list");
 
-	element.addEventListener("click", () => {
-		if (turnOff.style.display == "none") {
-			element.classList.add("trans");
-			if (element == control[0]) {
-				backSpaces(calcul.value);
-			}
-			if (
-				element != control[0] &&
-				element != control[1] &&
-				element != control[2] &&
-				element != control[8]
-			) {
-				calcul.value = calcul.value + element.innerHTML;
-			}
+// Variables
+let currentInput = "";
+let expression = "";
+let memory = 0;
+let isDegrees = true;
+let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
 
-			if (element == control[2]) {
-				let valeur = calcul.value.substring(
-					calcul.value.length - 1,
-					calcul.value.length
-				);
-				if (
-					valeur != "/" &&
-					valeur != "x" &&
-					valeur != "-" &&
-					valeur != "+" &&
-					valeur != "(" &&
-					valeur != ""
-				) {
-					calcul.value = calcul.value + "x" + element.innerHTML;
-				} else {
-					calcul.value = calcul.value + element.innerHTML;
-				}
-			}
-			let r = calculer(calcul.value);
-			if (element != control[8]) {
-				if (r != null) {
-					result.value = r + "";
-				} else {
-					result.value = "";
-				}
-			}
+// Mettre à jour l’historique
+function updateHistory(expr, result) {
+    const entry = `${expr} = ${result}`;
+    history.unshift(entry);
+    if (history.length > 5) history.pop();
+    localStorage.setItem("calcHistory", JSON.stringify(history));
+    renderHistory();
+}
 
-			if (element == control[8] && r != null) {
-				calcul.value = calculer(calcul.value);
-				result.value = "";
-			}
+function renderHistory() {
+    historyList.innerHTML = "";
+    history.forEach((entry, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${entry} <button class="delete-btn" aria-label="Supprimer ce calcul"><i class="fas fa-trash"></i></button>`;
+        
+        // Clic sur l’entrée pour la réutiliser
+        li.addEventListener("click", (e) => {
+            if (e.target.tagName !== "BUTTON" && e.target.tagName !== "I") {
+                const [expr] = entry.split(" = ");
+                currentInput = expr;
+                expression = expr;
+                resultDisplay.value = currentInput;
+            }
+        });
 
-			if (element == control[1]) {
-				calcul.value = "";
-				result.value = "";
-			}
-		}
-	});
+        // Clic sur le bouton de suppression
+        li.querySelector(".delete-btn").addEventListener("click", (e) => {
+            e.stopPropagation(); // Empêche le clic sur le <li> de se déclencher
+            history.splice(index, 1);
+            localStorage.setItem("calcHistory", JSON.stringify(history));
+            renderHistory();
+        });
+
+        historyList.appendChild(li);
+    });
+}
+
+// Toggle degrés/radians
+toggleModeButton.addEventListener("click", () => {
+    isDegrees = !isDegrees;
+    toggleModeButton.textContent = isDegrees ? "Deg" : "Rad";
 });
 
-const backSpaces = (text) => {
-	taille = text.trim().length;
-	if (taille > 0) {
-		calcul.value = text.substring(0, taille - 1);
-	}
-};
-const turnOnOff = (even) => {
-	if (even == "on") {
-		turnOn.style.display = "block";
-		turnOff.style.display = "none";
-		calculatrice.style.backgroundColor = "rgb(5, 63, 18)";
-		calculatrice.style.backgroundImage = `repeating-radial-gradient(
-			circle at 0 0,
-			transparent 0,
-			#1e9d3c 40px
-		),
-		repeating-linear-gradient(#49494955, #494949)`;
-		calculatrice.style.backgroundBlendMode = "multiply";
-		ecran.style.backgroundColor = " rgb(61, 58, 58)";
-		equal.classList.add("green");
-		backSpace.classList.add("cls-1");
-		colorBtn.forEach((element) => {
-			element.classList.add("green");
-		});
-	} else {
-		result.value = "";
-		calcul.value = "";
-		turnOn.style.display = "none";
-		turnOff.style.display = "block";
-		calculatrice.style.backgroundImage = "none";
-		calculatrice.style.backgroundColor = "black";
-		ecran.style.backgroundColor = "black";
-		equal.classList.remove("green");
-		backSpace.classList.remove("cls-1");
-		colorBtn.forEach((element) => {
-			element.classList.remove("green");
-		});
-	}
-};
+// Gestion des clics sur les boutons
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.dataset.value;
 
-const calculer = (expression) => {
-	expression = expression.replace(/,/g, ".");
-	expression = expression.replace(/x/g, "*");
+        if (value === "AC") {
+            currentInput = "";
+            expression = "";
+            resultDisplay.value = "";
+        } else if (value === "DEL") {
+            currentInput = currentInput.slice(0, -1);
+            resultDisplay.value = currentInput;
+        } else if (value === "=") {
+            try {
+                const result = evaluateExpression(expression);
+                currentInput = result.toString();
+                updateHistory(expression, result);
+                expression = currentInput;
+                resultDisplay.value = currentInput;
+                resultDisplay.classList.add("result");
+                setTimeout(() => resultDisplay.classList.remove("result"), 500);
+            } catch (error) {
+                resultDisplay.value = "Erreur";
+                currentInput = "";
+                expression = "";
+            }
+        } else if (value === "M+") {
+            memory += parseFloat(currentInput) || 0;
+        } else if (value === "M-") {
+            memory -= parseFloat(currentInput) || 0;
+        } else if (value === "MR") {
+            currentInput = memory.toString();
+            expression = currentInput;
+            resultDisplay.value = currentInput;
+        } else if (value === "MC") {
+            memory = 0;
+        } else {
+            handleInput(value);
+        }
+    });
+});
 
-	try {
-		const resultat = new Function("return " + expression)();
-		return resultat;
-	} catch (error) {
-		return null;
-	}
-};
+// Gestion des entrées
+function handleInput(value) {
+    switch (value) {
+        case "sin":
+        case "cos":
+        case "tan":
+        case "asin":
+        case "acos":
+        case "atan":
+        case "ln":
+        case "log":
+        case "e^x":
+            expression += `${value}(`;
+            currentInput += `${value}(`;
+            break;
+        case "x²":
+            expression += `Math.pow(${currentInput}, 2)`;
+            currentInput += "²";
+            break;
+        case "√":
+            expression += "Math.sqrt(";
+            currentInput += "√(";
+            break;
+        case "!":
+            expression = `factorial(${currentInput})`;
+            currentInput += "!";
+            break;
+        case "π":
+            expression += Math.PI;
+            currentInput += "π";
+            break;
+        default:
+            expression += value;
+            currentInput += value;
+    }
+    resultDisplay.value = currentInput;
+}
+
+// Évaluation de l’expression
+function evaluateExpression(expr) {
+    let adjustedExpr = expr
+        .replace(/sin/g, `Math.sin${isDegrees ? "(toRadians(" : "("}`)
+        .replace(/cos/g, `Math.cos${isDegrees ? "(toRadians(" : "("}`)
+        .replace(/tan/g, `Math.tan${isDegrees ? "(toRadians(" : "("}`)
+        .replace(/asin/g, `Math.asin${isDegrees ? "(toDegrees(" : "("}`)
+        .replace(/acos/g, `Math.acos${isDegrees ? "(toDegrees(" : "("}`)
+        .replace(/atan/g, `Math.atan${isDegrees ? "(toDegrees(" : "("}`)
+        .replace(/ln/g, "Math.log")
+        .replace(/log/g, "Math.log10")
+        .replace(/e\^x/g, "Math.exp")
+        .replace(/π/g, Math.PI);
+
+    if (isDegrees) {
+        adjustedExpr = adjustedExpr.replace(/\(/g, "(").replace(/\)/g, ")");
+    }
+
+    return eval(adjustedExpr); // Note : eval utilisé pour simplifier, envisager un parseur sécurisé en production
+}
+
+// Fonctions utilitaires
+function toRadians(deg) {
+    return deg * (Math.PI / 180);
+}
+
+function toDegrees(rad) {
+    return rad * (180 / Math.PI);
+}
+
+function factorial(n) {
+    n = parseInt(n);
+    if (n < 0) return NaN;
+    if (n === 0) return 1;
+    return n * factorial(n - 1);
+}
+
+// Initialisation
+renderHistory();
